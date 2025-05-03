@@ -1,6 +1,11 @@
 import React from 'react'
 import MainNavbar from './MainNavbar'
 import { API_URLS, APP_CONFIG, SERVICE_CARDS } from '../config/constants'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 const MainHeader = () => {
     return (
@@ -77,34 +82,107 @@ const MainHeader = () => {
                         </div>
 
                         {/* Service Cards */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 w-full max-w-6xl px-4">
-                            {Object.values(SERVICE_CARDS).map((service, index) => (
-                                <div key={index} 
-                                     className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-7 lg:p-8 hover:shadow-3xl transition-all duration-300 group hover:bg-white/20">
-                                    <div className="relative">
-                                        <img 
-                                            src={service.image}
-                                            alt={service.title} 
-                                            className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-xl mb-4 sm:mb-5 lg:mb-6 shadow-lg"
-                                        />
-                                        <span className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-orange-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium shadow-lg">
-                                            {service.discount}
-                                        </span>
+                        <div className="w-full max-w-6xl px-4">
+                            {/* Mobile Slider */}
+                            <div className="lg:hidden">
+                                <Swiper
+                                    modules={[Navigation, Pagination, Autoplay]}
+                                    spaceBetween={16}
+                                    slidesPerView={1.2}
+                                    centeredSlides={true}
+                                    pagination={{ clickable: true }}
+                                    navigation
+                                    autoplay={{
+                                        delay: 3000,
+                                        disableOnInteraction: false,
+                                    }}
+                                    breakpoints={{
+                                        640: {
+                                            slidesPerView: 2,
+                                            spaceBetween: 20,
+                                        },
+                                    }}
+                                    className="service-swiper"
+                                >
+                                    {Object.values(SERVICE_CARDS).map((service, index) => (
+                                        <SwiperSlide key={index}>
+                                            <div className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-7 hover:shadow-3xl transition-all duration-300 group hover:bg-white/20 h-full">
+                                                <div className="relative">
+                                                    <img 
+                                                        src={service.image}
+                                                        alt={service.title} 
+                                                        className="w-full h-40 sm:h-48 object-cover rounded-xl mb-4 sm:mb-5 shadow-lg"
+                                                    />
+                                                    <span className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-orange-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium shadow-lg">
+                                                        {service.discount}
+                                                    </span>
+                                                </div>
+                                                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-white">{service.title}</h3>
+                                                <p className="text-orange-100 mb-4 sm:mb-6 text-base sm:text-lg">{service.description}</p>
+                                                <button className="flex items-center text-white font-medium group-hover:translate-x-2 transition-transform duration-300 text-base sm:text-lg">
+                                                    {service.ctaText}
+                                                    <svg className="w-5 h-5 sm:w-6 sm:h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                            </div>
+
+                            {/* Desktop Grid */}
+                            <div className="hidden lg:grid grid-cols-3 gap-8">
+                                {Object.values(SERVICE_CARDS).map((service, index) => (
+                                    <div key={index} 
+                                         className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8 hover:shadow-3xl transition-all duration-300 group hover:bg-white/20">
+                                        <div className="relative">
+                                            <img 
+                                                src={service.image}
+                                                alt={service.title} 
+                                                className="w-full h-56 object-cover rounded-xl mb-6 shadow-lg"
+                                            />
+                                            <span className="absolute top-4 right-4 bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
+                                                {service.discount}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-2xl font-bold mb-3 text-white">{service.title}</h3>
+                                        <p className="text-orange-100 mb-6 text-lg">{service.description}</p>
+                                        <button className="flex items-center text-white font-medium group-hover:translate-x-2 transition-transform duration-300 text-lg">
+                                            {service.ctaText}
+                                            <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-white">{service.title}</h3>
-                                    <p className="text-orange-100 mb-4 sm:mb-6 text-base sm:text-lg">{service.description}</p>
-                                    <button className="flex items-center text-white font-medium group-hover:translate-x-2 transition-transform duration-300 text-base sm:text-lg">
-                                        {service.ctaText}
-                                        <svg className="w-5 h-5 sm:w-6 sm:h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Custom Swiper Styles */}
+            <style jsx global>{`
+                .service-swiper {
+                    padding: 20px 10px 40px;
+                }
+                .service-swiper .swiper-pagination-bullet {
+                    background: white;
+                    opacity: 0.5;
+                }
+                .service-swiper .swiper-pagination-bullet-active {
+                    opacity: 1;
+                }
+                .service-swiper .swiper-button-next,
+                .service-swiper .swiper-button-prev {
+                    color: white;
+                }
+                .service-swiper .swiper-button-next:after,
+                .service-swiper .swiper-button-prev:after {
+                    font-size: 24px;
+                }
+            `}</style>
         </div>
     )
 }
