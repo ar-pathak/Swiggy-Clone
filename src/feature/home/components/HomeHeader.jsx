@@ -7,6 +7,7 @@ const HomeHeader = () => {
         <div>
             <HomeHeroBG />
             <HomeHeroBody />
+            
         </div>
     )
 }
