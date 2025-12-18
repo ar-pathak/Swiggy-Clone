@@ -72,9 +72,9 @@ const Carousel = ({
     }, [loading, checkScroll]);
 
     return (
-        <div className="w-[90%] mx-auto mt-10">
+        <div className="w-[80%] mx-auto mt-30">
             {/* Header */}
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-8">
                 <h2 className="text-xl md:text-2xl font-bold text-[#02060c]">
                     {title}
                 </h2>
