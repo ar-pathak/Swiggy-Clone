@@ -1,10 +1,8 @@
 import React from "react";
 import Carousel from "./Carousel";
+import { foodImages } from "../utils/data";
 
-const foodImages = Array.from({ length: 36 }, (_, i) => ({
-    id: i + 1,
-    img: `https://source.unsplash.com/300x200/?food&sig=${i}`,
-}));
+
 
 const BestFoodOptions = () => {
     return (
@@ -16,8 +14,8 @@ const BestFoodOptions = () => {
             autoScrollDelay={3000}
             renderItem={(item) => (
                 <div
-                    className="w-[140px] sm:w-[180px] md:w-[220px]
-                     h-[120px] sm:h-[140px] md:h-[160px]
+                    className="w-[144px] 
+                     h-[180px]
                      rounded-xl overflow-hidden shadow"
                 >
                     <img

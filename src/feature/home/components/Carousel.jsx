@@ -132,7 +132,7 @@ const Carousel = ({
                     onTouchStart={() => clearInterval(autoScrollRef.current)}
                     onTouchEnd={startAutoScroll}
                     className="
-            grid grid-flow-col gap-4
+            grid grid-flow-col gap-10
             overflow-x-auto scroll-smooth
             snap-x snap-mandatory
             [scrollbar-width:none]
