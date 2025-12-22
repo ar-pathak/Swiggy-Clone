@@ -2,6 +2,7 @@ import React from 'react'
 import HomeNavbar from '../components/HomeNavbar'
 import HomeHeader from '../components/HomeHeader'
 import BestFoodOptions from '../components/BestFoodOptions'
+import ShopGroceries from '../components/Shopgroceries'
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
                 <HomeHeader />
             </div>
             <BestFoodOptions />
+            <ShopGroceries />
         </>
     )
 }
